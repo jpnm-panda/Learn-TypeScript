@@ -12,8 +12,14 @@ class Person {
   // readonly をつけると値の書き換えができなくなる
   readonly id: number = 31;
 
-  // class の初期化部分は省略できる
-  constructor(public readonly name: string, private age: number) {
+  // // class の初期化部分は省略できる
+  // constructor(public readonly name: string, private age: number) {
+  //   // constructor メソッドの中だと書き換えはできる
+  //   this.id = 32;
+  // }
+
+  // private 修飾子の場合、継承先のclass でも値を参照できなくなるが、protected なら参照可能
+  constructor(public readonly name: string, protected age: number) {
     // constructor メソッドの中だと書き換えはできる
     this.id = 32;
   }
@@ -51,3 +57,18 @@ junya.greeting();
 //   greeting: junya.greeting,
 // };
 // niseJunya.greeting();
+
+class Teacher extends Person {
+  constructor(name: string, age: number, public subject: string) {
+    super(name, age);
+  }
+
+  greeting(this: Teacher) {
+    console.log(
+      `Hello! My name is ${this.name} . I am ${this.age} years old. I teach ${this.subject}`
+    );
+  }
+}
+
+const teacher = new Teacher("Jun", 38, "Math");
+teacher.greeting();
