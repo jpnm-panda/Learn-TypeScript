@@ -1,13 +1,21 @@
 class Person {
-  // 明示的に書かなくてもデフォルトでpublic になっている
-  public name: string;
+  // // 明示的に書かなくてもデフォルトでpublic になっている
+  // public name: string;
 
-  // private をつけるとclass の外からアクセスすることができなくなる
-  private age: number;
+  // // private をつけるとclass の外からアクセスすることができなくなる
+  // private age: number;
 
-  constructor(initName: string, initAge: number) {
-    this.name = initName;
-    this.age = initAge;
+  // constructor(initName: string, initAge: number) {
+  //   this.name = initName;
+  //   this.age = initAge;
+
+  // readonly をつけると値の書き換えができなくなる
+  readonly id: number = 31;
+
+  // class の初期化部分は省略できる
+  constructor(public readonly name: string, private age: number) {
+    // constructor メソッドの中だと書き換えはできる
+    this.id = 32;
   }
 
   // this: を設定することで、greeting を呼び出したobject にname がるか確認できる
