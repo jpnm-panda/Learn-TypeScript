@@ -14,8 +14,8 @@
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
-    // "outDir": "./",                        /* Redirect output structure to the directory. */
-    // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     // "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
     // "removeComments": true,                /* Do not emit comments to output. */
@@ -66,14 +66,14 @@
     /* Advanced Options */
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  },
+  }
 
   // includeで設定したものからexcludeで設定したものが抜かれる
-  "include": ["index.ts", "compiler.ts"],
+  // "include": ["index.ts", "compiler.ts"],
 
   // node_moduleはデフォルトで、除外されているが、excludeを設定した時はここに書かないと除外されなくなる（ここに書いたものに再設定されるので）
-  "exclude": ["compiler.ts", "node_module"],
+  // "exclude": ["src/compiler.ts", "node_module"],
 
   // excludeで抜かれたものにfilesで設定したものが追加される
-  "files": ["compiler.ts"]
+  // "files": ["src/compiler.ts"]
 }
