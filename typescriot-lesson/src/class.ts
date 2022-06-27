@@ -59,7 +59,20 @@ junya.greeting();
 // niseJunya.greeting();
 
 class Teacher extends Person {
-  constructor(name: string, age: number, public subject: string) {
+  get subject() {
+    if (!this._subject) {
+      throw new Error("There is no subject.");
+    }
+    return this._subject;
+  }
+
+  set subject(value) {
+    if (!this._subject) {
+      throw new Error("There is no subject.");
+    }
+    this._subject = value;
+  }
+  constructor(name: string, age: number, private _subject: string) {
     super(name, age);
   }
 
@@ -71,4 +84,7 @@ class Teacher extends Person {
 }
 
 const teacher = new Teacher("Jun", 38, "Math");
+console.log("teacher.subject", teacher.subject);
+teacher.subject = "Music";
+console.log("teacher.subject", teacher.subject);
 teacher.greeting();
