@@ -1,4 +1,4 @@
-class Person {
+abstract class Person {
   // // 明示的に書かなくてもデフォルトでpublic になっている
   // public name: string;
 
@@ -41,14 +41,18 @@ class Person {
 
   greeting(this: Person) {
     console.log(`Hello! My name is ${this.name} . I am ${this.age} years old`);
+    this.explainJob();
   }
+
+  abstract explainJob(): void;
 }
 
-const junya = new Person("Junya", 27);
+// abstract Class はインスタンスを作成できない
+// const junya = new Person("Junya", 27);
 
-console.log("junya", junya);
-junya.incrementAge();
-junya.greeting();
+// console.log("junya", junya);
+// junya.incrementAge();
+// junya.greeting();
 
 // const niseJunya = {
 //   // this は呼び出される場所で参照先が変わる。ここでname を定義しないとniseJunya Object の中を参照しているのでundefined になる
@@ -65,6 +69,9 @@ junya.greeting();
 // niseJunya.greeting();
 
 class Teacher extends Person {
+  explainJob(): void {
+    console.log(`I am a teacher I teach ${this.subject}. `);
+  }
   get subject() {
     if (!this._subject) {
       throw new Error("There is no subject.");
