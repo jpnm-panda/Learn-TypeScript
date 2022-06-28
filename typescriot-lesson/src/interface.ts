@@ -1,5 +1,10 @@
-interface Human {
+interface Nameable {
   name: string;
+}
+
+interface Human extends Nameable {
+  // Nameable を継承しているので、name は書かなくて良い
+  // name: string
   age: number;
   greeting(message: string): void;
 }
@@ -18,3 +23,5 @@ class Developer implements Human {
     console.log("Hello !");
   }
 }
+
+const user: Human = new Developer("Junya", 38, 3);
