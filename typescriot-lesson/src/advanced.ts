@@ -54,12 +54,14 @@ function describeProfile(nomadWorker: NomadWorker) {
 }
 
 class Dog {
+  kind: "dog" = "dog";
   speak() {
     console.log("bow-bow");
   }
 }
 
 class Bird {
+  kind: "bird" = "bird";
   speak() {
     console.log("tweet-tweet");
   }
@@ -73,7 +75,15 @@ type Pet = Dog | Bird;
 // ここのPet をinterface にしてしまうとエラーになる。interface はコンパイル後に残らないため。
 const havePet = (pet: Pet) => {
   pet.speak();
+  switch (pet.kind) {
+    case "bird":
+      pet.fly();
+  }
   if (pet instanceof Bird) pet.fly();
 };
-
 havePet(new Bird());
+
+// getElementById はHTMLElement かnull の型を返すが、ここのinput はさらに具体的なHTMLInputElement を割り当てたいので、型アサーションを使って上書きする
+// const input = <HTMLInputElement>document.getElementById("input");
+const input = document.getElementById("input") as HTMLInputElement;
+input.value = "initial input value";
