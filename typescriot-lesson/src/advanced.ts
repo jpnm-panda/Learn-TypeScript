@@ -125,3 +125,32 @@ const downloadedData: DownloadedData = {
 console.log(downloadedData.user?.name?.lastName);
 
 const userData = downloadedData.user ?? "no-user";
+type id = DownloadedData["id"];
+enum Color {
+  RED,
+  BLUE,
+}
+// enum 型とnumber 型は互換性がある
+let target = 0;
+let source = Color.RED;
+target = source;
+
+let func1 = function (a: string, b: string) {};
+let func2 = function (a: string) {};
+func1 = func2;
+
+// private をつけたプロパティがあるとたとえ構造が同じでも代入ができない。AdvancedPerson のprivate で定義した値とAdvancedCar のprivate で定義したものは違うものとして扱われるから。
+class AdvancedPerson {
+  name: string = "Peter";
+  // private age: number = 5;
+}
+
+class AdvancedCar {
+  name: string = "Prius";
+  // private age: number = 5;
+}
+
+let advancedPerson = new AdvancedPerson();
+let advancedCar = new AdvancedCar();
+
+advancedPerson = advancedCar;
