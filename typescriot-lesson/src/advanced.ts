@@ -196,3 +196,7 @@ let advancedPerson = new AdvancedPerson();
 let advancedCar = new AdvancedCar();
 
 advancedPerson = advancedCar;
+
+function advancedFnc(...args: [number, string, boolean?, ...number[]]) {}
+
+advancedFnc(0, "hi", 0, 0, 0, 0);
