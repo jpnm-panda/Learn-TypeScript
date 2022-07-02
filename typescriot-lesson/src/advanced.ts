@@ -107,3 +107,17 @@ const designer: Designer = {
 console.log(designer.role);
 // オブジェクトのプロパティは何を指定してもエラーがでなくなる
 console.log(designer.hoge);
+
+interface DownloadedData {
+  id: number;
+  user?: {
+    firstName: string;
+    lastName: string;
+  };
+}
+
+const downloadedData: DownloadedData = {
+  id: 1,
+};
+
+console.log(downloadedData.user?.lastName);
