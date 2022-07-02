@@ -123,3 +123,5 @@ const downloadedData: DownloadedData = {
 };
 
 console.log(downloadedData.user?.name?.lastName);
+
+const userData = downloadedData.user ?? "no-user";
