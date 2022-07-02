@@ -46,8 +46,30 @@ function toUpperCase(x: string | number) {
 
   return x;
 }
-
 const upperHello = toUpperCase("Hello");
+
+interface OverloadFunction {
+  (x: string): string;
+  (x: number): number;
+}
+
+const overloadFunction = (x: string | number) => {
+  return x === typeof "string" ? "hoge" : 0;
+};
+
+interface FuncA {
+  (a: number, b: string): number;
+  (a: string, b: number): number;
+}
+
+interface FuncB {
+  (a: string): number;
+}
+
+let intersectionFunc: FuncA & FuncB;
+intersectionFunc = function (a: number | string, b?: number | string) {
+  return 0;
+};
 
 type NomadWorker = Engineer | Blogger;
 
