@@ -46,8 +46,50 @@ function toUpperCase(x: string | number) {
 
   return x;
 }
-
 const upperHello = toUpperCase("Hello");
+
+interface OverloadFunction {
+  (x: string): string;
+  (x: number): number;
+}
+
+const overloadFunction = (x: string | number) => {
+  return x === typeof "string" ? "hoge" : 0;
+};
+
+interface FuncA {
+  (a: number, b: string): number;
+  (a: string, b: number): number;
+}
+
+interface FuncB {
+  (a: string): number;
+}
+
+let intersectionFunc: FuncA & FuncB;
+intersectionFunc = function (a: number | string, b?: number | string) {
+  return 0;
+};
+
+interface FuncC {
+  (a: number): number;
+}
+
+interface FuncD {
+  (a: string): string;
+}
+
+// 関数型でユニオン型をつくると、引数はインターセクション型（今回は、string とnumber でnever になっている）になり、戻り値はユニオン型になる。
+let unionFunc: FuncC | FuncD;
+// unionFunc('neverなので何も入れれない');
+
+// 変数に関数を代入することで、引数をstring (number でもOK)に固定することができる
+unionFunc = (a: string) => {
+  return "hi";
+};
+
+// 固定した後は引数を入れられる
+unionFunc("Yea");
 
 type NomadWorker = Engineer | Blogger;
 
@@ -125,3 +167,50 @@ const downloadedData: DownloadedData = {
 console.log(downloadedData.user?.name?.lastName);
 
 const userData = downloadedData.user ?? "no-user";
+type id = DownloadedData["id"];
+enum Color {
+  RED,
+  BLUE,
+}
+// enum 型とnumber 型は互換性がある
+let target = 0;
+let source = Color.RED;
+target = source;
+
+let func1 = function (a: string, b: string) {};
+let func2 = function (a: string) {};
+func1 = func2;
+
+// private をつけたプロパティがあるとたとえ構造が同じでも代入ができない。AdvancedPerson のprivate で定義した値とAdvancedCar のprivate で定義したものは違うものとして扱われるから。
+class AdvancedPerson {
+  name: string = "Peter";
+  // private age: number = 5;
+}
+
+class AdvancedCar {
+  name: string = "Prius";
+  // private age: number = 5;
+}
+
+let advancedPerson = new AdvancedPerson();
+let advancedCar = new AdvancedCar();
+
+advancedPerson = advancedCar;
+
+function advancedFnc(
+  ...args: readonly [number, string, boolean?, ...number[]]
+) {}
+
+advancedFnc(0, "hi", true, 0, 0, 0, 0);
+
+const milk = "milk" as const;
+let drink = milk;
+
+const array = [10, 20] as const;
+
+const perter = {
+  name: "Perter",
+  age: 28,
+} as const;
+
+type PerterType = typeof perter;
