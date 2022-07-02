@@ -111,8 +111,10 @@ console.log(designer.hoge);
 interface DownloadedData {
   id: number;
   user?: {
-    firstName: string;
-    lastName: string;
+    name?: {
+      firstName: string;
+      lastName: string;
+    };
   };
 }
 
@@ -120,4 +122,4 @@ const downloadedData: DownloadedData = {
   id: 1,
 };
 
-console.log(downloadedData.user?.lastName);
+console.log(downloadedData.user?.name?.lastName);
