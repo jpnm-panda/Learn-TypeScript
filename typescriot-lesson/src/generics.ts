@@ -66,3 +66,22 @@ fetchData.then((data) => {
 
 // ここのArray に設定する型も実はジェネリクス
 const vegetables: Array<string> = ["Tomato", "Broccoli", "Asparagus"];
+
+interface ResponseData<T extends { message: string } = any> {
+  data: T;
+  status: number;
+}
+let tmpRes: ResponseData;
+
+// type MappedTypes = {
+//   [P in 'tomato' | 'pumpkin']: P
+// }
+
+interface Vegetables {
+  readonly tomato: string;
+  readonly pumpkin: string;
+}
+
+type MappedTypes = {
+  -readonly [P in keyof Vegetables]?: P;
+};
