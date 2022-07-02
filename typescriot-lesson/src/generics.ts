@@ -85,3 +85,14 @@ interface Vegetables {
 type MappedTypes = {
   -readonly [P in keyof Vegetables]?: P;
 };
+
+type ConditionalTypes = "tomato" extends string ? number : boolean;
+type ConditionalTypesInfer = { tomato: "tomato" } extends { tomato: infer R }
+  ? R
+  : boolean;
+type DistributiveConditionalTypes<T> = T | "pumpkin" extends "tomato"
+  ? number
+  : boolean;
+
+let genericsTmp1: NonNullable<string | null>;
+let genericsTmp2: DistributiveConditionalTypes<"tomato" | "pumpkin">;
