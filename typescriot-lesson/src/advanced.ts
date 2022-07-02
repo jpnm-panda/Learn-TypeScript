@@ -71,6 +71,26 @@ intersectionFunc = function (a: number | string, b?: number | string) {
   return 0;
 };
 
+interface FuncC {
+  (a: number): number;
+}
+
+interface FuncD {
+  (a: string): string;
+}
+
+// 関数型でユニオン型をつくると、引数はインターセクション型（今回は、string とnumber でnever になっている）になり、戻り値はユニオン型になる。
+let unionFunc: FuncC | FuncD;
+// unionFunc('neverなので何も入れれない');
+
+// 変数に関数を代入することで、引数をstring (number でもOK)に固定することができる
+unionFunc = (a: string) => {
+  return "hi";
+};
+
+// 固定した後は引数を入れられる
+unionFunc("Yea");
+
 type NomadWorker = Engineer | Blogger;
 
 function describeProfile(nomadWorker: NomadWorker) {
