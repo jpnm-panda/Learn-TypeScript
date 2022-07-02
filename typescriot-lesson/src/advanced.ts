@@ -197,6 +197,20 @@ let advancedCar = new AdvancedCar();
 
 advancedPerson = advancedCar;
 
-function advancedFnc(...args: [number, string, boolean?, ...number[]]) {}
+function advancedFnc(
+  ...args: readonly [number, string, boolean?, ...number[]]
+) {}
 
-advancedFnc(0, "hi", 0, 0, 0, 0);
+advancedFnc(0, "hi", true, 0, 0, 0, 0);
+
+const milk = "milk" as const;
+let drink = milk;
+
+const array = [10, 20] as const;
+
+const perter = {
+  name: "Perter",
+  age: 28,
+} as const;
+
+type PerterType = typeof perter;
